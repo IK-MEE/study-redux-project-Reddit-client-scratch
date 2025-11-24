@@ -1,7 +1,7 @@
-import { createSlice, createAsynceThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Thunk แบบง่าย ดึงโพสจาก subreddit เดียว
-export const fetchPosts = createAsynceThunk(
+export const fetchPosts = createAsyncThunk(
     'reddit/fetchPosts',
     async (subreddit) => {
         const res = await fetch('https://www.reddit.com/${subreddit}.json');
