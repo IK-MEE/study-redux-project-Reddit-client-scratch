@@ -1,14 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getSubredditPosts, getPostComments } from '../api/reddit.js';
 
 // Thunk แบบง่าย ดึงโพสจาก subreddit เดียว
 export const fetchPosts = createAsyncThunk(
     'reddit/fetchPosts',
     async (subreddit) => {
-        const res = await fetch('https://www.reddit.com/${subreddit}.json');
-        const json = await res.json();
-        return json.data.children.map( (c) => c.data );
+        //console.log('fetchPosts called with:', subreddit)
+
+        const posts = await getSubredditPosts(subreddit);
+        return posts;
     }
 );
+
+export const fetchComments = createAsyncThunk(
+    'reddit/fetchComments',
+    async (permalink) => {
+        const comments = await getPostComments(permalink);
+        return { permalink, comments };
+    }
+)
 
 const redditSlice = createSlice({
     name: 'reddit',
@@ -36,6 +46,7 @@ const redditSlice = createSlice({
             .addCase(fetchPosts.rejected, (state) => {
                 state.isLoading = false;
                 state.error = true;
+                //console.error('[fetchPosts.rejected]', action.error);
             })
     },
 })
