@@ -1,13 +1,14 @@
-import { useEffect } from 'react';
+import { use, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from '../../store/redditSlice';
+import { fetchPosts, selectFilteredPosts } from '../../store/redditSlice';
 import Post from '../Post/Post';
 
 const Home = () => {
     const dispatch = useDispatch();
-    const { posts, isLoading, error, selectedSubreddit } = useSelector(
+    const { isLoading, error, selectedSubreddit, searchTerm } = useSelector(
         (state) => state.reddit
     );
+    const posts = useSelector(selectFilteredPosts);
 
     // โหลดโพสต์เมื่อเข้า/เปลี่ยน subreddit
     useEffect( () => {
@@ -27,7 +28,7 @@ const Home = () => {
         )
     }
 
-    if (!posts.length) return <p>No posts.</p>
+    if (!posts.length) return <p>No posts match: <strong>{searchTerm}</strong></p>
 
     return (
         <div>
