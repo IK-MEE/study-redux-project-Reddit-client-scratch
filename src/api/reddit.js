@@ -51,18 +51,29 @@ export const getSubredditPosts = async (subreddit) => {
 export const getSubreddits = async () => {
     const url = `/subreddits.json`;
     console.log('Fetching subreddits from:', url);
-    const response = await fetch(url);
-    const json = await response.json();
+    try{
+        const response = await fetch(url);
+        const json = await response.json();
 
-    return json.data.children.map( (subreddit) => subreddit.data);
+        return json.data.children.map( (subreddit) => subreddit.data);
+    } catch (error){
+        console.log('[getSubreddits] Error:', error);
+        throw error;
+    }
 }
 
 // ดึง comments จาก permalink เช่น '/r/pics/comments/xxx'
 export const getPostComments = async (permalink) => {
     const url = `${permalink}.json`;
     console.log('Fetching comments from:', url);
-    const response = await fetch(url);
-    const json = await response.json();
+    try{
+        const response = await fetch(url);
+        const json = await response.json();
 
-    return json[1].data.children.map( (c) => c.data);
+        return json[1].data.children.map( (c) => c.data);
+    } catch (error){
+        console.log('[getPostComments] Error:', error);
+        throw error;
+    }
+
 }
