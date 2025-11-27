@@ -1,7 +1,9 @@
-import { use, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts, selectFilteredPosts } from '../../store/redditSlice';
 import Post from '../Post/Post';
+import PostSkeleton from '../Post/PostSkeleton';
+import './Home.css'
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -15,7 +17,15 @@ const Home = () => {
         dispatch(fetchPosts(selectedSubreddit));
     }, [dispatch, selectedSubreddit]);
 
-    if (isLoading) return <p>Loading posts...</p>
+    if (isLoading) {
+        return (
+            <div style={{width: '50vw', margin: '5rem 0 0 0'}}>
+                {Array.from({ length: 5}).map((_, i) => (
+                    <PostSkeleton key={i} />
+                ))}
+            </div>
+        )
+    }
 
     if (error) {
         return (
@@ -32,7 +42,7 @@ const Home = () => {
 
     return (
         <div>
-            <h1>r/{selectedSubreddit.replace('r/', '')}</h1>
+            <h1 className='topic'>r/{selectedSubreddit.replace('r/', '')}</h1>
             <ul>
                 {posts.map( (post) => (
                     <li key={post.id}>

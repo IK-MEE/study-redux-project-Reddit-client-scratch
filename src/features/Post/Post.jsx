@@ -1,17 +1,19 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchComments } from "../../store/redditSlice";
 import Comment from "../Comment/Comment";
+import './Post.css'
 
 const Post = ({ post }) => {
     const dispatch = useDispatch();
+    const [isOpen, setIsOpen] = useState(false);
 
-    const handleToggleComments = () => {
-        if (!post.showingComments){
-            dispatch(fetchComments(post.permalink));
-        } else {
-
-        }
+   const handleToggleComments = () => {
+    if (!isOpen && post.comments.length === 0 && !post.loadingComments){
+        dispatch(fetchComments(post.permalink));
     }
+    setIsOpen( (prev) => !prev);
+   }
 
     const title = post.title || '(no title)';
     const author = post.author || 'unknown';
@@ -33,9 +35,8 @@ const Post = ({ post }) => {
         >
             <h3 style={{ marginBottom: '4px' }}>{title}</h3>
             <div style={{ frontSize: '12px', color: '#555', marginBottom: '8px'}}>
-                by <strong>{author} {post.url}</strong>. 👍 {ups}
+                by <strong>{author}</strong> | 👍{ups}, 💬{post.num_comments}
             </div>
-            <div>Num comments: {post.num_comments}</div>
 
             {isImage && (
                 <div 
@@ -58,22 +59,18 @@ const Post = ({ post }) => {
                 onClick={handleToggleComments}
                 style={{ marginTop: '8px'}}
             >
-                {post.showingComments ? 'Hide' : 'Show'}
+                {isOpen ? 'Hide Comments' : 'Show Comments'}
             </button>
-            <div>
+            <div className={`comments-wrapper ${isOpen ? 'open' : ''}`}>
                 {post.loadingComments && <p>Loading comments...</p>}
 
                 {post.errorComments && (
                     <p style={{ color: 'red'}}>Failed to load comments.</p>
                 )}
 
-                {post.showingComments && !post.loadingComments && !post.errorComments && (
-                    <div style={{marginTop: '8px'}}>
-                        {post.comments.map( (c) => (
-                            <Comment key={c.id} comment={c} />
-                        ))}
-                    </div>
-                )}
+                {!post.loadingComments &&
+                    !post.errorComments &&
+                    post.comments.map((c) => <Comment key={c.id} comment={c} />)}
             </div>
 
             <a
