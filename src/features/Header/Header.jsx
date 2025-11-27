@@ -24,7 +24,7 @@ const Header = () => {
             }}
         >
             <div style={{ fontWeight: 'bold'}}>
-                Reddit Mini . <span style={{ opacity: 0.7}}>{selectedSubreddit}</span>
+                Mini Reddit. <span style={{ opacity: 0.7}}>{selectedSubreddit}</span>
             </div>
 
             <input
