@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../../store/redditSlice';
+import Post from '../Post/Post';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -34,8 +35,7 @@ const Home = () => {
             <ul>
                 {posts.map( (post) => (
                     <li key={post.id}>
-                        <strong>{post.title}</strong>
-                        <div>by {post.author}</div>
+                        <Post key={post.id} post={post} />
                     </li>
                 ))}
             </ul>
