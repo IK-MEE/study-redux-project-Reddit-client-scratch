@@ -12,6 +12,10 @@
     opacity: 1;
 }
 
+.posts-skeleton-wrapper {
+    margin-top: 90px;
+}
+
 .post-skeleton {
     border: 1px solid #ddd;
     border-radius: 8px;

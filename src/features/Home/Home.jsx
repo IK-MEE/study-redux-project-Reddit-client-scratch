@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts, selectFilteredPosts } from '../../store/redditSlice';
 import Post from '../Post/Post';
@@ -12,19 +11,14 @@ const Home = () => {
     );
     const posts = useSelector(selectFilteredPosts);
 
-    // โหลดโพสต์เมื่อเข้า/เปลี่ยน subreddit
-    useEffect( () => {
-        dispatch(fetchPosts(selectedSubreddit));
-    }, [dispatch, selectedSubreddit]);
-
     if (isLoading) {
         return (
-            <div style={{width: '50vw', margin: '5rem 0 0 0'}}>
-                {Array.from({ length: 5}).map((_, i) => (
+            <div className="posts-skeleton-wrapper">
+                {Array.from({ length: 5 }).map((_, i) => (
                     <PostSkeleton key={i} />
                 ))}
             </div>
-        )
+        );
     }
 
     if (error) {

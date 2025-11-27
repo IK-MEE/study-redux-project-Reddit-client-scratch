@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {fetchSubreddits } from '../../store/subredditsSlice';
 import { setSelectedSubreddit } from '../../store/redditSlice';
 import './Subreddits.css'
 
@@ -10,10 +8,6 @@ const Subreddits = () => {
         (state) => state.subreddits);
     const selectedSubreddit = useSelector(
         (state) => state.reddit.selectedSubreddit);
-    
-    useEffect( () => {
-        dispatch(fetchSubreddits());
-    }, [dispatch]);
 
     const handleClick = (subreddit) => {
         // reddit API ส่ง url แบบ '/r/pics/' ต้อง normalize ให้เป็น 'r/pics'
