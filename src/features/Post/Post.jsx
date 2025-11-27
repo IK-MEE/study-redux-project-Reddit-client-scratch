@@ -1,4 +1,18 @@
+import { useDispatch } from "react-redux";
+import { fetchComments } from "../../store/redditSlice";
+import Comment from "../Comment/Comment";
+
 const Post = ({ post }) => {
+    const dispatch = useDispatch();
+
+    const handleToggleComments = () => {
+        if (!post.showingComments){
+            dispatch(fetchComments(post.permalink));
+        } else {
+
+        }
+    }
+
     const title = post.title || '(no title)';
     const author = post.author || 'unknown';
     const ups = post.ups ?? 0;
@@ -38,6 +52,30 @@ const Post = ({ post }) => {
                     />
                 </div>
             )}
+
+            <button
+                type="button"
+                onClick={handleToggleComments}
+                style={{ marginTop: '8px'}}
+            >
+                {post.showingComments ? 'Hide' : 'Show'}
+            </button>
+            <div>
+                {post.loadingComments && <p>Loading comments...</p>}
+
+                {post.errorComments && (
+                    <p style={{ color: 'red'}}>Failed to load comments.</p>
+                )}
+
+                {post.showingComments && !post.loadingComments && !post.errorComments && (
+                    <div style={{marginTop: '8px'}}>
+                        {post.comments.map( (c) => (
+                            <Comment key={c.id} comment={c} />
+                        ))}
+                    </div>
+                )}
+            </div>
+
             <a
                 href={`https://www.reddit.com${post.permalink}`}
                 target="_blank"

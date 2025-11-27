@@ -77,3 +77,13 @@ export const getPostComments = async (permalink) => {
     }
 
 }
+
+export const getPostComment = async (permalink) => {
+    const url = `${permalink}.json`;
+    const response = await fetch(url);
+    const json = await response.json();
+
+    return json[1].data.children
+        .filter( (c) => c.kind === 't1')
+        .map( (c) => c.data);
+}
