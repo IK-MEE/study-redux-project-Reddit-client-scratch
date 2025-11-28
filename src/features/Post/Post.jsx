@@ -24,62 +24,47 @@ const Post = ({ post }) => {
     //console.log('sample Post: ', post);
 
     return (
-        <article
-            style={{
-                border: '1px solid #ddd',
-                borderRadius: '8px',
-                padding: '8px 12px',
-                marginBottom: '12px',
-                background: '#a5a5a5ff'
-            }}
+        <article className="post-card">
+        <h3 className="post-title">{title}</h3>
+
+        <div className="post-meta">
+            by <strong>{author}</strong> | 👍{ups}, 💬{post.num_comments}
+        </div>
+
+        {isImage && (
+            <div className="post-image-wrapper">
+            <img src={post.url} alt={title} className="post-image" />
+            </div>
+        )}
+
+        <button
+            type="button"
+            onClick={handleToggleComments}
+            className="toggle-comments-btn"
         >
-            <h3 style={{ marginBottom: '4px' }}>{title}</h3>
-            <div style={{ frontSize: '12px', color: '#555', marginBottom: '8px'}}>
-                by <strong>{author}</strong> | 👍{ups}, 💬{post.num_comments}
-            </div>
+            {isOpen ? "Hide Comments" : "Show Comments"}
+        </button>
 
-            {isImage && (
-                <div 
-                    style={{
-                        maxHeight: '300px',
-                        overflow: 'hidden',
-                        borderRadius: '6px',
-                    }}
-                >
-                    <img
-                        src={post.url}
-                        alt={title}
-                        style={{ width: '100%', display: 'block', objectFit: 'cover'}}
-                    />
-                </div>
+        <div className={`comments-wrapper ${isOpen ? "open" : ""}`}>
+            {post.loadingComments && <p>Loading comments...</p>}
+            {post.errorComments && (
+                <p className="error">Failed to load comments.</p>
             )}
+            {!post.loadingComments &&
+            !post.errorComments &&
+            post.comments.map((c) => (
+                <Comment key={c.id} comment={c} />
+            ))}
+        </div>
 
-            <button
-                type="button"
-                onClick={handleToggleComments}
-                style={{ marginTop: '8px'}}
-            >
-                {isOpen ? 'Hide Comments' : 'Show Comments'}
-            </button>
-            <div className={`comments-wrapper ${isOpen ? 'open' : ''}`}>
-                {post.loadingComments && <p>Loading comments...</p>}
-
-                {post.errorComments && (
-                    <p style={{ color: 'red'}}>Failed to load comments.</p>
-                )}
-
-                {!post.loadingComments &&
-                    !post.errorComments &&
-                    post.comments.map((c) => <Comment key={c.id} comment={c} />)}
-            </div>
-
-            <a
-                href={`https://www.reddit.com${post.permalink}`}
-                target="_blank"
-                rel="noreferrer"
-            >
-                Open on Reddit
-            </a>
+        <a
+            href={`https://www.reddit.com${post.permalink}`}
+            target="_blank"
+            rel="noreferrer"
+            className="open-reddit-link"
+        >
+            Open on Reddit
+        </a>
         </article>
     );
 };
