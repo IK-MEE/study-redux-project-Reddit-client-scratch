@@ -7,13 +7,17 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@reduxjs/toolkit": "^2.11.0",
+    "jsdom": "^27.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "vitest": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
