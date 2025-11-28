@@ -93,7 +93,7 @@ const redditSlice = createSlice({
                 post.showingComments = true;
             })
             .addCase(fetchComments.rejected, (state, action) => {
-                const {permalink} = action.payload?.permalink || action.meta.arg;
+                const permalink = action.payload?.permalink || action.meta.arg;
                 const post = state.posts.find( (p) => p.permalink === permalink);
                 if (!post) return;
                 post.loadingComments = false;
