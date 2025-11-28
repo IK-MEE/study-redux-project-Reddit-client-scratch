@@ -32,22 +32,23 @@ function App() {
     subItems.length === 0;
 
   return (
-    <div>
+    <div className='app-root'>
       <Header />
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', justifyContent: 'center'}}>
-        <div style={{ flex: 3 }}>
-          {isInitialLoading ? (
-            <>
-              {Array.from({ length: 5 }).map((_,i) => (
-                <PostSkeleton key={i} />
-              ))}
-            </>
-          ) : (
-            <Home />
-          )}
-        </div>
 
-        <div style={{ flex: 1, maxWidth: '260px'}}>
+      <main className='app-main'>
+        <section className='app-content'>
+          {isInitialLoading ? (
+              <>
+                {Array.from({ length: 5 }).map((_,i) => (
+                  <PostSkeleton key={i} />
+                ))}
+              </>
+            ) : (
+              <Home />
+            )}
+        </section>
+
+        <aside className='app-sidebar'>
           {isInitialLoading ? (
             <ul className='subreddits-list'>
               {Array.from({ length: 13 }).map( (_,i) => (
@@ -60,6 +61,16 @@ function App() {
           ) : (
             <Subreddits />
           )}
+        </aside>
+      </main>
+
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', justifyContent: 'center'}}>
+        <div style={{ flex: 3 }}>
+          
+        </div>
+
+        <div style={{ flex: 1, maxWidth: '260px'}}>
+          
         </div>
       </div>
     </div>
