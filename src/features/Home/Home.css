@@ -1,4 +1,10 @@
 .topic {
-    margin-top: 0.5rem;
-    margin-bottom: 0.3rem;
+    margin-top: 0rem;
+    margin-bottom: 1.3rem;
+}
+
+.posts {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
 }

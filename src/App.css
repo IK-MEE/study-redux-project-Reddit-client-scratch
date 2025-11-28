@@ -30,11 +30,12 @@ body {
 
 .app-main {
   flex: 1;
-  max-width: 1120px;
+  max-width: 1320px;
+  width: 100%;
   margin: 0 auto;
-  padding: 1rem 1.25rem 2.5rem;
+  padding-top: 1rem;
   display: flex;
-  gap: 1.25rem;
+  gap: 1rem;
   align-items: flex-start;
 }
 
@@ -60,8 +61,10 @@ body {
 @media (max-width: 768px) {
   .app-main {
     flex-direction: column;
-    max-width: 100%;
-    padding-inline: 0.9rem;
+  }
+
+  .app-content {
+    width: 100%;
   }
 
   .app-sidebar {

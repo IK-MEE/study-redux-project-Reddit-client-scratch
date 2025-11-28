@@ -37,7 +37,7 @@ const Home = () => {
     return (
         <div>
             <h1 className='topic'>r/{selectedSubreddit.replace('r/', '')}</h1>
-            <ul>
+            <ul className='posts'>
                 {posts.map( (post) => (
                     <li key={post.id}>
                         <Post key={post.id} post={post} />

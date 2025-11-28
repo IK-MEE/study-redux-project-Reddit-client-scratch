@@ -15,9 +15,9 @@ const Header = () => {
     return (
         <header
             style={{
-                padding: '8px 12px',
+                padding: '0px 12px 16px 12px',
                 borderBottom: '1px solid #ddd',
-                marginBottom: '12px',
+                marginBottom: '0px',
                 display: 'flex',
                 gap: '12px',
                 alignItems: 'center',

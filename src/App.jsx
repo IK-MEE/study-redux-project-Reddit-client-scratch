@@ -63,16 +63,6 @@ function App() {
           )}
         </aside>
       </main>
-
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', justifyContent: 'center'}}>
-        <div style={{ flex: 3 }}>
-          
-        </div>
-
-        <div style={{ flex: 1, maxWidth: '260px'}}>
-          
-        </div>
-      </div>
     </div>
   );
 }

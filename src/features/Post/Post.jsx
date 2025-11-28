@@ -25,46 +25,46 @@ const Post = ({ post }) => {
 
     return (
         <article className="post-card">
-        <h3 className="post-title">{title}</h3>
+            <h3 className="post-title">{title}</h3>
 
-        <div className="post-meta">
-            by <strong>{author}</strong> | 👍{ups}, 💬{post.num_comments}
-        </div>
-
-        {isImage && (
-            <div className="post-image-wrapper">
-            <img src={post.url} alt={title} className="post-image" />
+            <div className="post-meta">
+                By <strong>{author}</strong> | 👍{ups} | 💬{post.num_comments}
             </div>
-        )}
 
-        <button
-            type="button"
-            onClick={handleToggleComments}
-            className="toggle-comments-btn"
-        >
-            {isOpen ? "Hide Comments" : "Show Comments"}
-        </button>
-
-        <div className={`comments-wrapper ${isOpen ? "open" : ""}`}>
-            {post.loadingComments && <p>Loading comments...</p>}
-            {post.errorComments && (
-                <p className="error">Failed to load comments.</p>
+            {isImage && (
+                <div className="post-image-wrapper">
+                <img src={post.url} alt={title} className="post-image" />
+                </div>
             )}
-            {!post.loadingComments &&
-            !post.errorComments &&
-            post.comments.map((c) => (
-                <Comment key={c.id} comment={c} />
-            ))}
-        </div>
 
-        <a
-            href={`https://www.reddit.com${post.permalink}`}
-            target="_blank"
-            rel="noreferrer"
-            className="open-reddit-link"
-        >
-            Open on Reddit
-        </a>
+            <button
+                type="button"
+                onClick={handleToggleComments}
+                className="toggle-comments-btn"
+            >
+                {isOpen ? "Hide Comments" : "Show Comments"}
+            </button>
+
+            <div className={`comments-wrapper ${isOpen ? "open" : ""}`}>
+                {post.loadingComments && <p>Loading comments...</p>}
+                {post.errorComments && (
+                    <p className="error">Failed to load comments.</p>
+                )}
+                {!post.loadingComments &&
+                !post.errorComments &&
+                post.comments.map((c) => (
+                    <Comment key={c.id} comment={c} />
+                ))}
+            </div>
+
+            <a
+                href={`https://www.reddit.com${post.permalink}`}
+                target="_blank"
+                rel="noreferrer"
+                className="open-reddit-link"
+            >
+                Open on Reddit
+            </a>
         </article>
     );
 };

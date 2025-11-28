@@ -4,10 +4,13 @@
   padding: 8px 12px;
   margin-bottom: 12px;
   background: #a5a5a5ff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .post-title {
-  margin-bottom: 4px;
+  margin: 4px 0px;
 }
 
 .post-meta {
