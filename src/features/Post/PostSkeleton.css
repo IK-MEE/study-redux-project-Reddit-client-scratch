@@ -13,7 +13,7 @@
 .post-skeleton-title,
 .post-skeleton-meta,
 .post-skeleton-image {
-    background: linear-gradient(90deg, #eee, #b9b9b9, #eee,);
+    background: linear-gradient(90deg, #eee, #b9b9b9, #494949);
     background-size: 200% 100%;
     animation: skeleton-shimmer 1.2s ease-in-out infinite;
     border-radius: 4px;

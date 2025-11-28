@@ -7,7 +7,7 @@
 
 .subreddit-skeleton-avatar,
 .subreddit-skeleton-text {
-    background: linear-gradient(90deg, #eee, #ddd, #eee);
+    background: linear-gradient(90deg, #eee, #a0a0a0, #5c5c5c);
     background-size: 200% 100%;
     animation: subreddit-skeleton-shimmer 1.2s ease-in-out infinite;
     border-radius: 999px;
