@@ -1,3 +1,1 @@
-/subreddits.json   https://www.reddit.com/subreddits.json   200
-/r/*               https://www.reddit.com/r/:splat          200
-/*                 /index.html                              200
+/*  /index.html  200

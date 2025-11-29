@@ -1,13 +1,8 @@
-/*export const fetchPosts = async (subreddit) => {
-    const res = await fetch(`${subreddit}.json`);
-    const json = await res.json();
-    return json.data.children.map( (c) => c.data);
-}*/
+const API_ROOT = 'https://www.reddit.com';
 
 // ดึงโพสต์จาก subreddit เช่น 'r/pics'
 export const getSubredditPosts = async (subreddit) => {
-    const url = `/${subreddit}.json`;
-    //console.log('Fetching posts from:', url);
+    const url = `${API_ROOT}/${subreddit}.json`;
 
     try {
         const response = await fetch(url);
@@ -49,7 +44,7 @@ export const getSubredditPosts = async (subreddit) => {
 
 // ดึงรายการ subreddits
 export const getSubreddits = async () => {
-    const url = `/subreddits.json`;
+    const url = `${API_ROOT}/subreddits.json`;
     console.log('Fetching subreddits from:', url);
     try{
         const response = await fetch(url);
@@ -64,7 +59,7 @@ export const getSubreddits = async () => {
 
 // ดึง comments จาก permalink เช่น '/r/pics/comments/xxx'
 export const getPostComments = async (permalink) => {
-    const url = `${permalink}.json`;
+    const url = `${API_ROOT}${permalink}.json`;
     console.log('Fetching comments from:', url);
     try{
         const response = await fetch(url);
@@ -75,15 +70,4 @@ export const getPostComments = async (permalink) => {
         console.log('[getPostComments] Error:', error);
         throw error;
     }
-
-}
-
-export const getPostComment = async (permalink) => {
-    const url = `${permalink}.json`;
-    const response = await fetch(url);
-    const json = await response.json();
-
-    return json[1].data.children
-        .filter( (c) => c.kind === 't1')
-        .map( (c) => c.data);
 }
