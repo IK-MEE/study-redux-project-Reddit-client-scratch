@@ -33,7 +33,7 @@ const Post = ({ post }) => {
 
             {isImage && (
                 <div className="post-image-wrapper">
-                <img src={post.url} alt={title} className="post-image" />
+                <img src={post.url} alt={title} className="post-image" loading="lazy" />
                 </div>
             )}
 
