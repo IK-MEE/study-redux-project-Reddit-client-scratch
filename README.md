@@ -47,3 +47,11 @@ npm run cy:open
 - Uses Reddit public JSON API (read-only)
 - API requests are rate-limited
 - Designed as learning and experimentation project
+
+---
+
+## Limitation
+
+Live Reddit data may not load in the hosted demo due to Reddit’s restrictions
+on requests from cloud and serverless environments.
+The app works as intended in local development.
