@@ -57,9 +57,6 @@ const Subreddits = () => {
                 </ul>
                 </div>
             )}
-
-
-             
         </div>
     );
 };
