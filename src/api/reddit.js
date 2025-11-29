@@ -2,8 +2,6 @@
 
 const isDev = import.meta.env.DEV;
 
-// โหมด dev: เรียก Reddit ตรง ๆ
-// โหมด prod: เรียก Netlify Function
 const FN_ROOT = '/.netlify/functions/reddit';
 const REDDIT_ROOT = 'https://www.reddit.com';
 
@@ -25,9 +23,9 @@ export const getSubreddits = async () => {
 };
 
 // ─── Posts ──────────────────────────────────────────
-// subreddit เช่น 'r/pics'
+// subreddit เช่น 'r/pics' หรือ '/r/pics'
 export const getSubredditPosts = async (subreddit) => {
-  const normalized = subreddit.replace(/^\/+/, ''); // กันเคส "/r/pics"
+  const normalized = subreddit.replace(/^\/+/, ''); // กัน "/r/pics"
   const url = isDev
     ? `${REDDIT_ROOT}/${normalized}.json`
     : `${FN_ROOT}?type=posts&subreddit=${encodeURIComponent(normalized)}`;

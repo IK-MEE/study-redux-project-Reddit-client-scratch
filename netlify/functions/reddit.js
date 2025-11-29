@@ -21,6 +21,8 @@ exports.handler = async (event) => {
     } else {
       return { statusCode: 400, body: 'Unknown type' };
     }
+    
+    console.log('[netlify reddit fn] Fetching:', url);
 
     const response = await fetch(url, {
       headers: {
