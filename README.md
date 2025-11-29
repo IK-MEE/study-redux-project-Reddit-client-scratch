@@ -34,6 +34,8 @@ Built to practice modern React, Redux Toolkit, and frontend testing.
 
 ---
 
+## Test commands
+
 ```bash
 npm test
 npm run cy:open
