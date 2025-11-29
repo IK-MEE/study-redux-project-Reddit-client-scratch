@@ -11,10 +11,9 @@ exports.handler = async (event) => {
       url = `${API_ROOT}/subreddits.json`;
     } else if (type === 'posts') {
       const subreddit = params.subreddit || 'r/pics';
-      // subreddit เช่น 'r/pics'
       url = `${API_ROOT}/${subreddit}.json`;
     } else if (type === 'comments') {
-      const permalink = params.permalink; // เช่น '/r/pics/comments/xxx/...'
+      const permalink = params.permalink;
       if (!permalink) {
         return { statusCode: 400, body: 'Missing permalink' };
       }
