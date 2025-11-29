@@ -8,4 +8,23 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
   },
+  server: {
+    proxy: {
+      '/r': {
+        target: 'https://www.reddit.com',
+        changeOrigin: true,
+        secure: true,
+      },
+      '/subreddits': {
+        target: 'https://www.reddit.com',
+        changeOrigin: true,
+        secure: true,
+      },
+      '/search': {
+        target: 'https://www.reddit.com',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
 })

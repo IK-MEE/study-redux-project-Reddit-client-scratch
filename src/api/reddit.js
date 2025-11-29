@@ -8,7 +8,7 @@ const REDDIT_ROOT = 'https://www.reddit.com';
 // ─── Subreddits ─────────────────────────────────────
 export const getSubreddits = async () => {
   const url = isDev
-    ? `${REDDIT_ROOT}/subreddits.json`
+    ? `/subreddits.json`
     : `${FN_ROOT}?type=subreddits`;
 
   console.log('[getSubreddits] Fetching:', url);
@@ -27,7 +27,7 @@ export const getSubreddits = async () => {
 export const getSubredditPosts = async (subreddit) => {
   const normalized = subreddit.replace(/^\/+/, ''); // กัน "/r/pics"
   const url = isDev
-    ? `${REDDIT_ROOT}/${normalized}.json`
+    ? `/${subreddit}.json`
     : `${FN_ROOT}?type=posts&subreddit=${encodeURIComponent(normalized)}`;
 
   console.log('[getSubredditPosts] Fetching:', url);
@@ -45,7 +45,7 @@ export const getSubredditPosts = async (subreddit) => {
 // permalink เช่น '/r/pics/comments/xxxx/...'
 export const getPostComments = async (permalink) => {
   const url = isDev
-    ? `${REDDIT_ROOT}${permalink}.json`
+    ? `${permalink}.json`
     : `${FN_ROOT}?type=comments&permalink=${encodeURIComponent(permalink)}`;
 
   console.log('[getPostComments] Fetching:', url);
