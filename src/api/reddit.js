@@ -2,7 +2,7 @@ const API_ROOT = 'https://www.reddit.com';
 
 // ดึงโพสต์จาก subreddit เช่น 'r/pics'
 export const getSubredditPosts = async (subreddit) => {
-    const url = `${API_ROOT}/${subreddit}.json`;
+    const url = `${API_ROOT}?type=posts&subreddit=${encodeURIComponent(subreddit)}`;
 
     try {
         const response = await fetch(url);
@@ -44,7 +44,7 @@ export const getSubredditPosts = async (subreddit) => {
 
 // ดึงรายการ subreddits
 export const getSubreddits = async () => {
-    const url = `${API_ROOT}/subreddits.json`;
+    const url = `${API_ROOT}?type=subreddits`;
     console.log('Fetching subreddits from:', url);
     try{
         const response = await fetch(url);
@@ -59,7 +59,7 @@ export const getSubreddits = async () => {
 
 // ดึง comments จาก permalink เช่น '/r/pics/comments/xxx'
 export const getPostComments = async (permalink) => {
-    const url = `${API_ROOT}${permalink}.json`;
+    const url = `${API_ROOT}?type=comments&permalink=${encodeURIComponent(permalink)}`;
     console.log('Fetching comments from:', url);
     try{
         const response = await fetch(url);
